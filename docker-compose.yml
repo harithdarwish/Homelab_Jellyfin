@@ -1,0 +1,24 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: always
+
+    ports:
+      - "8096:8096"
+
+    volumes:
+      - jellyfin-config:/config
+      - jellyfin-cache:/cache
+      - /mnt/media:/media  # Update this to point to where your media files are stored
+
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+
+volumes:
+  jellyfin-config:
+    external: true
+    name: jellyfin_jellyfin-config
+  jellyfin-cache:
+    external: true
+    name: jellyfin_jellyfin-cache
